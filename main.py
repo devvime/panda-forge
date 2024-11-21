@@ -8,6 +8,9 @@ from config.inputs import accept_inputs, update_keys
 loadPrcFile('config/config.prc')
 from core.functions import world_debug
 
+from scenes.main_menu import MainMenu
+from scenes.settings_menu import SettingsMenu
+
 class Game(ShowBase):
     def __init__(self):
         super().__init__()
@@ -20,11 +23,14 @@ class Game(ShowBase):
         accept_inputs(self)
         self.taskMgr.add(self.update, "update")
         
+        self.current_scene = MainMenu()
+        
     def update(self, task):
         self.dt = globalClock.getDt()
         self.world.doPhysics(self.dt)
         update_keys()
-        return Task.cont
+        self.current_scene.update(self.dt)
+        return Task.cont        
 
 game = Game()
 game.run()
