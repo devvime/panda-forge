@@ -19,8 +19,3 @@ def world_debug():
     debug_np = render.attachNewNode(debug_node)
     base.world.setDebugNode(debug_np.node())
     debug_np.show()
-    
-def change_scene(scene):
-    base.current_scene.objects['title'].destroy()
-    base.current_scene.destroy()
-    base.current_scene = scene

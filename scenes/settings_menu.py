@@ -5,11 +5,9 @@ from states.game import game_states
 
 class SettingsMenu:
     def __init__(self):
+        self.scene_name = 'settings_menu'
         self.is_loaded = False
-        self.scene = NodePath("settings_menu")
         self.objects = {}
-        self.create()
-        self.load_scene()
         
     def create(self):
         self.objects['title'] = OnscreenText(
@@ -21,7 +19,7 @@ class SettingsMenu:
             text="Back to Main Menu",
             scale=0.1,
             pos=(0, 0, 0.1),
-            command=None
+            command=go_to_main_menu
         )
         self.objects['exit_button'] = DirectButton(
             text="Exit",
@@ -30,11 +28,10 @@ class SettingsMenu:
             command=exit
         )
         
-    def load_scene(self):
-        for obj in self.objects.items():
-            if isinstance(obj, NodePath) or isinstance(obj, PandaNode) or isinstance(obj, (DirectButton, DirectLabel, TextNode)):
-                element.reparentTo(self.scene)
+    def load(self):
+        self.scene = NodePath(self.scene_name)
         self.scene.reparentTo(render)
+        self.create()
         self.is_loaded = True
     
     def update(self, dt):
@@ -42,3 +39,6 @@ class SettingsMenu:
     
     def destroy(self):
         self.scene.removeNode()
+        
+def go_to_main_menu():
+    base.change_scene('main_menu')
