@@ -3,14 +3,13 @@ from direct.task import Task
 from panda3d.core import loadPrcFile, NodePath, PandaNode, TextNode
 from direct.gui.DirectGui import DirectButton, DirectLabel
 from panda3d.bullet import BulletWorld
+loadPrcFile('config/config.prc')
+
 from states.keys import keys
 from states.game import game_states
 from config.inputs import accept_inputs, update_keys
-loadPrcFile('config/config.prc')
 from core.functions import world_debug
-
-from scenes.main_menu import MainMenu
-from scenes.settings_menu import SettingsMenu
+from scenes import scenes
 
 class Game(ShowBase):
     def __init__(self):
@@ -25,11 +24,7 @@ class Game(ShowBase):
         self.taskMgr.add(self.update, "update")
         
         self.current_scene = None
-        self.scenes = {
-            "main_menu": MainMenu(),
-            "settings_menu": SettingsMenu()
-        }
-        
+        self.scenes = scenes        
         self.change_scene('main_menu')
         
     def update(self, task):

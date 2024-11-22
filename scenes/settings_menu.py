@@ -1,15 +1,16 @@
-from panda3d.core import NodePath, PandaNode, TextNode
-from direct.gui.DirectGui import DirectButton, DirectLabel
-from direct.gui.OnscreenText import OnscreenText
+from core.scene import Scene
 from states.game import game_states
 
-class SettingsMenu:
+from direct.gui.DirectGui import DirectButton
+from direct.gui.OnscreenText import OnscreenText
+
+class SettingsMenu(Scene):
     def __init__(self):
+        super().__init__()
         self.scene_name = 'settings_menu'
-        self.is_loaded = False
-        self.objects = {}
         
     def create(self):
+        super().create()
         self.objects['title'] = OnscreenText(
             text="Settings Menu",
             scale=0.1,
@@ -27,18 +28,9 @@ class SettingsMenu:
             pos=(0, 0, -0.1),
             command=exit
         )
-        
-    def load(self):
-        self.scene = NodePath(self.scene_name)
-        self.scene.reparentTo(render)
-        self.create()
-        self.is_loaded = True
-    
+
     def update(self, dt):
         pass
-    
-    def destroy(self):
-        self.scene.removeNode()
-        
+
 def go_to_main_menu():
     base.change_scene('main_menu')
