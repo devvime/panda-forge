@@ -5,6 +5,7 @@ from core.functions import get_language
 from game.entities.ground.ground import Ground
 from panda3d.core import AmbientLight, DirectionalLight, Vec4
 from core.components.skybox import SkyBox
+from game.entities.player.player import Player
 
 class GamePlay(Scene):
     def __init__(self):
@@ -12,8 +13,8 @@ class GamePlay(Scene):
         self.scene_name = 'game_play'
         
     def config(self):
-        base.cam.setPos(0, -31, 20)
-        base.cam.setHpr(0, -31, 0)
+        # base.cam.setPos(0, -31, 20)
+        # base.cam.setHpr(0, -31, 0)
         
         ambientLight = AmbientLight("ambient light")
         ambientLight.setColor(Vec4(0.2, 0.2, 0.2, 1))
@@ -33,6 +34,7 @@ class GamePlay(Scene):
         self.config()
         self.sky = SkyBox()
         self.ground = Ground()
+        self.player = Player()
 
     def update(self, dt):
         pass
