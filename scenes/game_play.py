@@ -1,7 +1,7 @@
 from core.scene import Scene
 from states.game import game_states
 from data.languages import languages
-from core.functions import get_language
+from core.functions import get_language, world_debug
 from game.entities.ground.ground import Ground
 from panda3d.core import AmbientLight, DirectionalLight, Vec4
 from core.components.skybox import SkyBox
@@ -28,6 +28,7 @@ class GamePlay(Scene):
         render.setLight(self.mainLightNodePath)
         
         render.setShaderAuto()
+        # world_debug()
         
     def create(self):
         super().create()
@@ -35,6 +36,7 @@ class GamePlay(Scene):
         self.sky = SkyBox()
         self.ground = Ground()
         self.player = Player()
+        render.setShaderAuto()
 
     def update(self, dt):
-        pass
+        self.player.update(dt)

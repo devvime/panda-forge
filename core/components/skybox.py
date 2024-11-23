@@ -15,15 +15,15 @@ class SkyBox:
         
         TexturePool.add_texture(texture_cube_map)
         
-        skybox = loader.load_model('assets/models/sphere.bam')
-        skybox.reparent_to(render)
-        skybox.set_texture(texture_cube_map)
+        self.skybox = loader.load_model('assets/models/sphere.bam')
+        self.skybox.reparent_to(render)
+        self.skybox.set_texture(texture_cube_map)
         
         ts = TextureStage.get_default()
         
-        skybox.set_tex_gen(ts, TexGenAttrib.M_world_cube_map)
-        skybox.set_tex_hpr(ts, (0, 90, 180))
-        skybox.set_tex_scale(ts, (1, -1))
-        skybox.set_light_off()
-        skybox.set_material_off()
-        skybox.setScale(1000)
+        self.skybox.set_tex_gen(ts, TexGenAttrib.M_world_cube_map)
+        self.skybox.set_tex_hpr(ts, (0, 90, 180))
+        self.skybox.set_tex_scale(ts, (1, -1))
+        self.skybox.set_light_off()
+        self.skybox.set_material_off()
+        self.skybox.setScale(1000)

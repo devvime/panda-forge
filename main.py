@@ -8,7 +8,6 @@ loadPrcFile('config/config.prc')
 from states.keys import keys
 from states.game import game_states
 from config.inputs import accept_inputs, update_keys
-from core.functions import world_debug
 from scenes import scenes
 
 class Game(ShowBase):
@@ -18,7 +17,6 @@ class Game(ShowBase):
         self.dt = None        
         self.world = BulletWorld()
         self.world.setGravity(game_states['gravity'])
-        world_debug()
 
         accept_inputs(self)
         self.taskMgr.add(self.update, "update")
