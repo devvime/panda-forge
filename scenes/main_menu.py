@@ -1,5 +1,7 @@
 from core.scene import Scene
 from states.game import game_states
+from data.languages import languages
+from core.functions import get_language
 
 from direct.gui.DirectGui import DirectButton
 from direct.gui.OnscreenText import OnscreenText
@@ -12,18 +14,18 @@ class MainMenu(Scene):
     def create(self):
         super().create()
         self.objects['title'] = OnscreenText(
-            text="Main Menu",
+            text=languages[get_language()]['main_menu']['title'],
             scale=0.1,
             pos=(0, 0.3)
         )
         self.objects['start_button'] = DirectButton(
-            text="Start Game",
+            text=languages[get_language()]['main_menu']['start_button'],
             scale=0.1,
             pos=(0, 0, 0.1),
             command=go_to_settings_menu
         )
         self.objects['exit_button'] = DirectButton(
-            text="Exit",
+            text=languages[get_language()]['main_menu']['exit_button'],
             scale=0.1,
             pos=(0, 0, -0.1),
             command=exit
@@ -31,6 +33,6 @@ class MainMenu(Scene):
 
     def update(self, dt):
         pass
-            
+
 def go_to_settings_menu():
     base.change_scene('settings_menu')

@@ -1,3 +1,4 @@
+import json
 from panda3d.bullet import BulletDebugNode
 from states.keys import keys
 
@@ -19,3 +20,12 @@ def world_debug():
     debug_np = render.attachNewNode(debug_node)
     base.world.setDebugNode(debug_np.node())
     debug_np.show()
+    
+def get_language():
+    preferences = None
+    with open('data/json/preferences.json', 'r', encoding='utf-8') as file:
+        preferences = json.load(file)
+    if preferences['language']['user'] == "":
+        return preferences['language']['default']
+    else:
+        return preferences['language']['user']
