@@ -9,7 +9,7 @@ languages = {
     },
     "settings_menu": {
       "title": "Settings Menu",
-      "main_menu_button": "Back to Main Menu",
+      "main_menu_button": "Main Menu",
       "exit_button": "Exit"
     }
   },
@@ -22,8 +22,8 @@ languages = {
       "exit_button": "Sair"
     },
     "settings_menu": {
-      "title": "Menu de Configurações",
-      "main_menu_button": "Voltar para o menu principal",
+      "title": "Configurações",
+      "main_menu_button": "Menu Principal",
       "exit_button": "Sair"
     }
   }

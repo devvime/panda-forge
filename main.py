@@ -28,6 +28,7 @@ class Game(ShowBase):
         self.change_scene('main_menu')
         
     def update(self, task):
+        if game_states['paused']: return
         self.dt = globalClock.getDt()
         self.world.doPhysics(self.dt)
         update_keys()
