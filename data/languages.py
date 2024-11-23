@@ -4,6 +4,7 @@ languages = {
     "main_menu": {
       "title": "Main Menu",
       "start_button": "Start Game",
+      "settings_button": "Settings",
       "exit_button": "Exit"
     },
     "settings_menu": {
@@ -17,6 +18,7 @@ languages = {
     "main_menu": {
       "title": "Menu Principal",
       "start_button": "Iniciar Jogo",
+      "settings_button": "Configurações",
       "exit_button": "Sair"
     },
     "settings_menu": {

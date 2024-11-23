@@ -16,10 +16,16 @@ class MainMenu(Scene):
         self.objects['title'] = OnscreenText(
             text=languages[get_language()]['main_menu']['title'],
             scale=0.1,
-            pos=(0, 0.3)
+            pos=(0, 0.5)
         )
         self.objects['start_button'] = DirectButton(
             text=languages[get_language()]['main_menu']['start_button'],
+            scale=0.1,
+            pos=(0, 0, 0.3),
+            command=start_game
+        )
+        self.objects['settings_button'] = DirectButton(
+            text=languages[get_language()]['main_menu']['settings_button'],
             scale=0.1,
             pos=(0, 0, 0.1),
             command=go_to_settings_menu
@@ -34,5 +40,8 @@ class MainMenu(Scene):
     def update(self, dt):
         pass
 
+def start_game():
+    base.change_scene('game_play')
+    
 def go_to_settings_menu():
     base.change_scene('settings_menu')
