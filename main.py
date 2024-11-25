@@ -1,7 +1,6 @@
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
-from panda3d.core import loadPrcFile, NodePath, PandaNode, TextNode
-from direct.gui.DirectGui import DirectButton, DirectLabel
+from panda3d.core import *
 from panda3d.bullet import BulletWorld
 loadPrcFile('config/config.prc')
 
@@ -14,6 +13,8 @@ class Game(ShowBase):
     def __init__(self):
         super().__init__()
         
+        self.win.setClearColor(LVector4(0.53, 0.81, 0.92, 1))
+        
         self.dt = None        
         self.world = BulletWorld()
         self.world.setGravity(game_states['gravity'])
@@ -23,7 +24,7 @@ class Game(ShowBase):
         
         self.current_scene = None
         self.scenes = scenes        
-        self.change_scene('main_menu')
+        self.change_scene('game_play')
         
     def update(self, task):
         if game_states['paused']: return
