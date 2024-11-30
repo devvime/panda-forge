@@ -31,7 +31,7 @@ class GameObject:
             mesh = BulletTriangleMesh()
             mesh.add_geom(target.node().get_geom(0))
             shape = BulletTriangleMeshShape(mesh, dynamic=False)
-            node = BulletRigidBodyNode('mesh_collider')
+            node = BulletRigidBodyNode(f"{target.name}_physics")
             node.add_shape(shape)
             node.set_mass(mass)
             node_path = render.attach_new_node(node)
