@@ -19,7 +19,7 @@ class GamePlay(Scene):
     def config(self):
         # base.cam.setPos(0, -31, 20)
         # base.cam.setHpr(0, -31, 0)
-        # world_debug()
+        world_debug()
         self.a_light = ambient_light()
         self.d_light = directional_light()
         pass

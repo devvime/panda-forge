@@ -10,7 +10,7 @@ class Player:
         self.height = 1.6
         self.radius = 0.2
         self.speed = 3.0
-        self.run_speed = 6.0
+        self.run_speed = 8.0
         self.rotate_speed = 120.0
         self.max_jump_height = 5.0
         self.jump_speed = 5.5
@@ -49,50 +49,42 @@ class Player:
         
         if self.character.on_ground:
             self.is_jumping = False
+        else:
+            self.is_jumping = True
         
         if key('space'):
-            self.is_jumping = True
+            self.doJump()
+            
+        if key('lshift'):
+            self.is_running = True
+            
         if key('a'):
             rotate_speed = self.rotate_speed
         if key('d'):
             rotate_speed = -self.rotate_speed
-            
-        if key('w'):
-            self.run()
-            if not self.is_jumping:
-                self.is_walking = True
-            if self.is_running:
-                current_speed = self.run_speed
                 
+        if key('w'):
+            self.is_walking = True                
             speed.setY(current_speed)
             
         if key('s'):
-            self.run()
-            if not self.is_jumping:
-                self.is_walking = True                
-            if self.is_running:
-                current_speed = self.run_speed
-                
-            speed.setY(-current_speed)
+            self.is_walking = True    
+            speed.setY(-current_speed)            
             
-        if self.is_jumping:
-            self.doJump()
+        if self.is_walking and self.is_running:
+            current_speed = self.run_speed                
+            speed.setY(current_speed)
         
         self.character.setLinearMovement(speed, True)
         self.character.setAngularMovement(rotate_speed)
         self.animate()
         
-    def run(self):
-        if key('lshift'):
-            if not self.is_jumping:
-                self.is_running = True
-        
     def animate(self):
-        if self.is_walking and not self.is_running:
+        if self.is_walking and not self.is_running and not self.is_jumping:
             if not self.animator('walk').isPlaying():
                 self.actor.stop()
                 self.actor.loop('walk')
-        elif self.is_walking and self.is_running:
+        elif self.is_walking and self.is_running and not self.is_jumping:
             if not self.animator('run').isPlaying():
                 self.actor.stop()
                 self.actor.loop('run')
