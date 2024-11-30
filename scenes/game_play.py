@@ -17,8 +17,8 @@ class GamePlay(Scene):
         self.p_light = None
         
     def config(self):
-        # base.cam.setPos(0, -31, 20)
-        # base.cam.setHpr(0, -31, 0)
+        base.camera.setPos(0, -1, 1)
+        base.camera.setHpr(0, -1, 0)
         world_debug()
         self.a_light = ambient_light()
         self.d_light = directional_light()

@@ -5,7 +5,7 @@ class Ground(GameObject):
         super().__init__()
         self.object = loader.loadModel("assets/models/scene/egg/propotype_env")
         self.object.reparentTo(render)        
-        self.add_rigid_body('ground', shape=(20, 20, 0.5), mass=0)
+        self.add_collider()
 
     def update(self, dt):
-        pass
+        pass 

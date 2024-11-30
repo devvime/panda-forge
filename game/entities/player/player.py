@@ -7,26 +7,29 @@ from core.components.camera_follow import camera_follow
 
 class Player:
     def __init__(self):
-        self.height = 1.6
+        self.height = 2
         self.radius = 0.2
+        self.gravity = 25.0
         self.speed = 3.0
         self.run_speed = 8.0
         self.rotate_speed = 120.0
         self.max_jump_height = 5.0
-        self.jump_speed = 5.5
+        self.jump_speed = 8
         self.is_walking = False
         self.is_running = False
         self.is_jumping = False
         
         self.actor = Actor("assets/models/player/player1.gltf")
-        self.actor.getChild(0).setZ(-0.75)
+        self.actor.getChild(0).setZ(-0.99)
         self.actor.getChild(0).setH(180)
         self.animator = self.actor.getAnimControl
         
         self.shape = BulletCapsuleShape(self.radius, self.height - 2*self.radius, ZUp)        
         self.character = BulletCharacterControllerNode(self.shape, 0.4, 'Player')
+        self.character.set_gravity(self.gravity)
         
         self.player = render.attachNewNode(self.character)
+        self.player.set_pos(0, 0, .5)
         
         self.actor.reparentTo(self.player)
         base.world.attachCharacter(self.player.node())
@@ -96,7 +99,7 @@ class Player:
             if not self.animator('idle').isPlaying():
                 self.actor.stop()
                 self.actor.loop('idle')
-            
+    
     def doJump(self):
         self.character.setMaxJumpHeight(self.max_jump_height)
         self.character.setJumpSpeed(self.jump_speed)

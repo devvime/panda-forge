@@ -1,4 +1,4 @@
-from panda3d.bullet import BulletBoxShape, BulletRigidBodyNode
+from panda3d.bullet import BulletBoxShape, BulletRigidBodyNode, BulletTriangleMesh, BulletTriangleMeshShape
 from panda3d.core import Vec3
 
 class GameObject:
@@ -24,6 +24,20 @@ class GameObject:
         self.object.reparentTo(self.body)
         base.world.attachRigidBody(self.physics_node)
         return self.body
+    
+    def add_collider(self, mass=0):
+        nodes = self.object.find_all_matches("**/+GeomNode")        
+        for target in nodes:
+            mesh = BulletTriangleMesh()
+            mesh.add_geom(target.node().get_geom(0))
+            shape = BulletTriangleMeshShape(mesh, dynamic=False)
+            node = BulletRigidBodyNode('mesh_collider')
+            node.add_shape(shape)
+            node.set_mass(mass)
+            node_path = render.attach_new_node(node)
+            node_path.set_pos(target.getPos())
+            node_path.set_hpr(target.getHpr())            
+            base.world.attach(node)
 
     def remove_from_physics_world(self):
         if self.physics_node:
