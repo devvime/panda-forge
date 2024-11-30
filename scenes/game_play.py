@@ -33,3 +33,5 @@ class GamePlay(Scene):
 
     def update(self, dt):
         self.objects['player'].update(dt)
+        
+        # self.d_light.lookAt(self.objects['player'].player.getPos())
