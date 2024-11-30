@@ -6,7 +6,7 @@ def ambient_light(color=(0.3, 0.3, 0.3, 1)):
     render.setLight(a_light)
     return a_light
     
-def directional_light(color=(1, 1, 1, 1), pos=(60, -60, 60), hpr=(45, -60, 0)):
+def directional_light(color=(1, 1, 1, 1), pos=(30, -30, 30), hpr=(45, -60, 0)):
     d_light = render.attach_new_node(DirectionalLight("d_light"))
     d_light.node().set_shadow_caster(True, 2048, 2048)
     d_light.node().set_color(color)

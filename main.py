@@ -26,7 +26,7 @@ class Game(ShowBase):
         
         self.current_scene = None
         self.scenes = scenes        
-        self.change_scene('main_menu')
+        self.change_scene('game_play')
         
     def update(self, task):
         if game_states['paused']: return
