@@ -6,30 +6,23 @@ from game.entities.ground.ground import Ground
 from core.components.skybox import SkyBox
 from game.entities.player.player import Player
 from panda3d.core import *
+from game.lights.light import *
 
 class GamePlay(Scene):
     def __init__(self):
         super().__init__()
         self.scene_name = 'game_play'
+        self.a_light = None
+        self.d_light = None
+        self.p_light = None
         
     def config(self):
         # base.cam.setPos(0, -31, 20)
         # base.cam.setHpr(0, -31, 0)
-        
-        ambientLight = render.attachNewNode(AmbientLight('ambientLight'))
-        ambientLight.node().setColor((0.2, 0.2, 0.2, 1))
-        render.setLight(ambientLight)
-        
-        my_light = render.attach_new_node(Spotlight("Spot"))
-        my_light.node().set_shadow_caster(True, 512, 512)
-        my_light.node().set_color((0.9, 0.9, 0.8, 1.0))
-        my_light.node().get_lens().set_fov(100)
-        my_light.node().get_lens().set_near_far(0.1, 30)
-        render.setLight(my_light)
-        my_light.set_pos(10, -10, 20)
-        my_light.set_hpr(45, -45, 0)
-        my_light.look_at(0, 0, 0)
         # world_debug()
+        self.a_light = ambient_light()
+        self.d_light = directional_light()
+        pass
         
     def create(self):
         super().create()
@@ -37,7 +30,6 @@ class GamePlay(Scene):
         self.objects['sky'] = SkyBox()
         self.objects['ground'] = Ground()
         self.objects['player'] = Player()
-        render.setShaderAuto()
 
     def update(self, dt):
         self.objects['player'].update(dt)

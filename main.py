@@ -13,6 +13,8 @@ class Game(ShowBase):
     def __init__(self):
         super().__init__()
         
+        render.set_antialias(AntialiasAttrib.MMultisample)
+        render.setShaderAuto()
         self.win.setClearColor(LVector4(0.53, 0.81, 0.92, 1))
         
         self.dt = None        
@@ -24,7 +26,7 @@ class Game(ShowBase):
         
         self.current_scene = None
         self.scenes = scenes        
-        self.change_scene('game_play')
+        self.change_scene('main_menu')
         
     def update(self, task):
         if game_states['paused']: return

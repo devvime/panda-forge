@@ -1,3 +1,5 @@
-win-size 800 600
+win-size 1280 720
 window-title Panda Game Dev 
-show-frame-rate-meter 1
+show-frame-rate-meter true
+framebuffer-multisample true
+multisamples 4
