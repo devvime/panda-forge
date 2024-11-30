@@ -52,22 +52,28 @@ class Player:
         
         if key('space'):
             self.is_jumping = True
-        if key('lshift'):
-            current_speed = self.run_speed
-            if not self.is_jumping:
-                self.is_running = True
         if key('a'):
             rotate_speed = self.rotate_speed
         if key('d'):
             rotate_speed = -self.rotate_speed
+            
         if key('w'):
+            self.run()
+            if not self.is_jumping:
+                self.is_walking = True
+            if self.is_running:
+                current_speed = self.run_speed
+                
             speed.setY(current_speed)
-            if not self.is_running and not self.is_jumping:
-                self.is_walking = True
+            
         if key('s'):
+            self.run()
+            if not self.is_jumping:
+                self.is_walking = True                
+            if self.is_running:
+                current_speed = self.run_speed
+                
             speed.setY(-current_speed)
-            if not self.is_running and not self.is_jumping:
-                self.is_walking = True
             
         if self.is_jumping:
             self.doJump()
@@ -76,12 +82,17 @@ class Player:
         self.character.setAngularMovement(rotate_speed)
         self.animate()
         
+    def run(self):
+        if key('lshift'):
+            if not self.is_jumping:
+                self.is_running = True
+        
     def animate(self):
-        if self.is_walking:
+        if self.is_walking and not self.is_running:
             if not self.animator('walk').isPlaying():
                 self.actor.stop()
                 self.actor.loop('walk')
-        elif self.is_running:
+        elif self.is_walking and self.is_running:
             if not self.animator('run').isPlaying():
                 self.actor.stop()
                 self.actor.loop('run')
