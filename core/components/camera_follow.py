@@ -10,4 +10,3 @@ def camera_follow(target=None, offset=(0, -0.5, 0.05), smooth=0.08):
     
     base.camera.setPos(new_position)
     base.camera.setHpr(new_rotation)
-    # base.camera.lookAt(target)

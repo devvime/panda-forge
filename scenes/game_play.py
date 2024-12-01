@@ -19,14 +19,13 @@ class GamePlay(Scene):
     def config(self):
         base.camera.setPos(0, -1, 1)
         base.camera.setHpr(0, -1, 0)
-        world_debug()
-        self.a_light = ambient_light()
-        self.d_light = directional_light()
-        pass
+        # world_debug()
         
     def create(self):
         super().create()
         self.config()
+        self.objects['a_light'] = ambient_light()
+        self.objects['d_light'] = directional_light()
         self.objects['sky'] = SkyBox()
         self.objects['ground'] = Ground()
         self.objects['player'] = Player()
