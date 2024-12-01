@@ -25,7 +25,7 @@ class Player:
         self.animator = self.actor.getAnimControl
         
         self.shape = BulletCapsuleShape(self.radius, self.height - 2*self.radius, ZUp)        
-        self.character = BulletCharacterControllerNode(self.shape, 0.4, 'Player')
+        self.character = BulletCharacterControllerNode(self.shape, 0.8, 'Player')
         self.character.set_gravity(self.gravity)
         
         self.player = render.attachNewNode(self.character)
