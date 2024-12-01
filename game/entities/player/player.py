@@ -12,7 +12,7 @@ class Player:
         self.gravity = 25.0
         self.speed = 3.0
         self.run_speed = 8.0
-        self.rotate_speed = 120.0
+        self.rotate_speed = 160.0
         self.max_jump_height = 5.0
         self.jump_speed = 8
         self.is_walking = False
@@ -39,8 +39,8 @@ class Player:
         self.actor.loop('idle')
         
         base.disableMouse()
-        base.cam.setPos(0, -3, 3)
-        base.cam.setHpr(0, -25, 0)
+        base.cam.setPos(0, -3, 2.5)
+        base.cam.setHpr(0, -20, 0)
         base.camLens.setFov(90)
 
     def movement(self, dt):
@@ -107,7 +107,7 @@ class Player:
 
     def update(self, dt):
         self.movement(dt)
-        camera_follow(self.player)
+        camera_follow(target=self.player)
         pass
     
     def destroy(self):
