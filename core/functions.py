@@ -1,4 +1,5 @@
 import json
+from panda3d.core import Vec3
 from panda3d.bullet import BulletDebugNode
 from states.keys import keys
 
@@ -29,3 +30,15 @@ def get_language():
         return preferences['language']['default']
     else:
         return preferences['language']['user']
+    
+def ray(start=Vec3(0, 5, 0), end=Vec3(0, -5, 0)):
+    start_point = start
+    end_point = end 
+    result = base.world.rayTestClosest(start_point, end_point)
+
+    if result.hasHit():
+        print(f"Objeto atingido: {result.getNode()}")
+        print(f"Posição do impacto: {result.getHitPos()}")
+        print(f"Normal da colisão: {result.getHitNormal()}")
+        
+    return result

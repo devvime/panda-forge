@@ -7,6 +7,7 @@ from core.components.skybox import SkyBox
 from game.entities.player.player import Player
 from panda3d.core import *
 from game.lights.light import *
+from game.entities.test import Test
 
 class GamePlay(Scene):
     def __init__(self):
@@ -19,7 +20,7 @@ class GamePlay(Scene):
     def config(self):
         base.camera.setPos(0, -1, 1)
         base.camera.setHpr(0, -1, 0)
-        # world_debug()
+        world_debug()
         
     def create(self):
         super().create()
@@ -29,8 +30,8 @@ class GamePlay(Scene):
         self.objects['sky'] = SkyBox()
         self.objects['ground'] = Ground()
         self.objects['player'] = Player()
+        self.objects['test'] = Test()
 
     def update(self, dt):
         self.objects['player'].update(dt)
-        
-        # self.d_light.lookAt(self.objects['player'].player.getPos())
+        self.objects['test'].update(dt)

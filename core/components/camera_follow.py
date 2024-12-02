@@ -1,4 +1,4 @@
-def camera_follow(target=None, offset=(0, -0.5, 0.05), smooth=0.08):
+def camera_follow(target=None, offset=(0, -0.5, -0.5), smooth=0.08):
     target_position = target.getPos() + offset
     target_rotation = target.getHpr() + offset
     
