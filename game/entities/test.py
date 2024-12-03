@@ -8,6 +8,7 @@ class Test(GameObject):
         self.add_rigid_body(name='test', pos=(5, 5, 3))
 
     def update(self, dt):
-        print(self.on_collisiton(self.body, 'Player') )
+        # print(self.on_collisiton(self.body, 'Player'))
+        pass
 
 

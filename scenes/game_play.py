@@ -18,9 +18,8 @@ class GamePlay(Scene):
         self.p_light = None
         
     def config(self):
-        base.camera.setPos(0, -1, 1)
-        base.camera.setHpr(0, -1, 0)
-        world_debug()
+        # world_debug()
+        pass
         
     def create(self):
         super().create()

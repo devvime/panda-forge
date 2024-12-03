@@ -3,7 +3,7 @@ from core.functions import key
 from panda3d.bullet import BulletCharacterControllerNode, BulletCapsuleShape, ZUp
 from panda3d.core import Vec3
 from direct.actor.Actor import Actor
-from core.components.camera_follow import camera_follow
+from core.components.camera_follow import camera_follow, CameraFollow
 
 class Player:
     def __init__(self):
@@ -39,9 +39,11 @@ class Player:
         self.actor.loop('idle')
         
         base.disableMouse()
-        base.cam.setPos(0, -3, 2.5)
+        base.cam.setPos(0.5, -2.3, 2.3)
         base.cam.setHpr(0, -20, 0)
-        base.camLens.setFov(90)
+        base.camLens.setFov(100)
+        
+        self.cameraFollow = CameraFollow(self.player)
 
     def movement(self, dt):
         speed = Vec3(0, 0, 0)
@@ -107,7 +109,8 @@ class Player:
 
     def update(self, dt):
         self.movement(dt)
-        camera_follow(target=self.player)
+        # camera_follow(target=self.player)
+        self.cameraFollow.update()
         pass
     
     def destroy(self):

@@ -29,7 +29,7 @@ class GameObject:
         base.world.attachRigidBody(self.node)
         return self.body
     
-    def add_collider(self, mass=0):
+    def add_mesh_collider(self, mass=0):
         nodes = self.object.find_all_matches("**/+GeomNode")
         for target in nodes:
             mesh = BulletTriangleMesh()

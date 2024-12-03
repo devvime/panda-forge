@@ -5,7 +5,7 @@ class Ground(GameObject):
         super().__init__()
         self.object = loader.loadModel("assets/models/scene/egg/propotype_env")
         self.object.reparentTo(render)        
-        self.add_collider()
+        self.add_mesh_collider()
 
     def update(self, dt):
         pass 
